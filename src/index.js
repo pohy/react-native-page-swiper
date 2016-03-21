@@ -63,7 +63,10 @@ export default class Swiper extends Component {
       // Touch is released, scroll to the one that you're closest to
       onPanResponderRelease: release,
       onPanResponderTerminate: release,
-
+      // Terminate only when zero fingers are touching
+      onPanResponderTerminationRequest: (e, gestureState) => {
+          return gestureState.numberActiveTouches < 1;
+      },
 
       // Dragging, move the view with the touch
       onPanResponderMove: (e, gestureState) => {
